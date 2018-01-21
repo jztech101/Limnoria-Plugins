@@ -17,12 +17,16 @@ except ImportError:
 class Loggy(callbacks.Plugin):
     """Loggy"""
     threaded = True
-def doNotice(self, irc, msg):
-    irc.queueMsg(ircmsgs.privmsg('#techcavern', msg))
-    logChannel = self.registryValue('LogChan')
-    if logChannel is None:
-        return
-    irc.queueMsg(ircmsgs.privmsg(logChannel, msg))
+    def doNotice(self, irc, msg):
+        logChannel = self.registryValue('LogChan')
+        if logChannel is None:
+            return
+        irc.queueMsg(ircmsgs.privmsg(logChannel, "[Notice] " + msg.prefix + ': '  +' '.join(msg.args[1:])))
+    def doPrivmsg(self,irc,msg):
+        logChannel = self.registryValue('LogChan')
+        if logChannel is None or msg.args[0].startswith("#"):
+            return
+        irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
 
 
 Class = Loggy
