@@ -21,7 +21,7 @@ class Loggy(callbacks.Plugin):
         logChannel = self.registryValue('LogChan')
         if logChannel is None or not logChannel.startswith("#"):
             return
-        irc.queueMsg(ircmsgs.privmsg(logChannel, "[Notice] " + msg.prefix + ': '  +' '.join(msg.args[1:])))
+        irc.queueMsg(ircmsgs.privmsg(logChannel, "[Notice " + msg.args[0] +"] " + msg.prefix + ': '  +' '.join(msg.args[1:])))
     def doPrivmsg(self,irc,msg):
         logChannel = self.registryValue('LogChan')
         if logChannel is None or msg.args[0].startswith("#") or not logChannel.startswith("#"):
