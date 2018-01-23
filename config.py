@@ -25,5 +25,5 @@ Loggy = conf.registerPlugin('Loggy')
 # conf.registerGlobalValue(Loggy, 'someConfigVariableName',
 #     registry.Boolean(False, _("""Help for someConfigVariableName.""")))
 
-conf.registerGlobalValue(Loggy, "LogChan", registry.String(None, ("""The channel this will be logging to""")))
+conf.registerGlobalValue(Loggy, "LogChan", registry.String('', ("""The channel this will be logging to""")))
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
