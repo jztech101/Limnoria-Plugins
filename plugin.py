@@ -18,7 +18,7 @@ class Loggy(callbacks.Plugin):
     """Loggy"""
     threaded = True
     def doNotice(self, irc, msg):
-        logChannel = self.registryValue('LogChan')
+        logChannel = self.registryValue('logChan')
         if not logChannel or not logChannel.startswith("#"):
             return
         if msg.args[0].startswith('#'):
@@ -26,7 +26,7 @@ class Loggy(callbacks.Plugin):
         else:
             irc.queueMsg(ircmsgs.privmsg(logChannel, "[Notice] " + msg.prefix + ': '  +' '.join(msg.args[1:])))
     def doPrivmsg(self,irc,msg):
-        logChannel = self.registryValue('LogChan')
+        logChannel = self.registryValue('logChan')
         if not logChannel or msg.args[0].startswith("#") or not logChannel.startswith("#"):
             return
         irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
