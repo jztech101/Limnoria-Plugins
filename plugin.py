@@ -32,7 +32,10 @@ class Loggy(callbacks.Plugin):
         irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
     def act(self, irc, msg, args, something):
         """ acts """
-        channel = msg.args[0]
+        if ircutils.isChannel(msg.args[0]):
+            channel = msg.args[0]
+        else:
+            channel = msg.nick
         idex = 0
         if len(something) > 1 and something[0].startswith('#'):
             channel = something[0]
@@ -43,8 +46,11 @@ class Loggy(callbacks.Plugin):
 
     def say(self, irc, msg, args, something):
         """ says """
-        channel = msg.args[0]
-        idex = 0
+        if ircutils.isChannel(msg.args[0]):
+            channel = msg.args[0]
+        else:
+            channel = msg.nick
+        idex=0
         if len(something) > 1 and (something[0].startswith('#') or (not something[0][0].isalnum() and something[0][1] == "#")):
             channel = something[0]
             idex = 1
