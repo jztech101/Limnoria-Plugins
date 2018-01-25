@@ -30,7 +30,7 @@ class Loggy(callbacks.Plugin):
         if not logChannel or not msg.args[0].isalnum() or not logChannel.startswith("#"):
             return
         irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
-    def act2(self, irc, msg, args, something):
+    def act(self, irc, msg, args, something):
         """ acts """
         channel = msg.args[0]
         idex = 0
@@ -39,17 +39,17 @@ class Loggy(callbacks.Plugin):
             idex = 1
         irc.queueMsg(ircmsgs.action(channel, ' '.join(something[idex:])))
 
-    act2 = wrap(act2, ['owner', many('something')])
+    act = wrap(act, ['owner', many('something')])
 
-    def say2(self, irc, msg, args, something):
+    def say(self, irc, msg, args, something):
         """ says """
         channel = msg.args[0]
         idex = 0
-        if len(something) > 1 and something[0].startswith('#'):
+        if len(something) > 1 and (something[0].startswith('#') or (not something[0][0].isalnum() and something[0][1] == "#")):
             channel = something[0]
             idex = 1
         irc.queueMsg(ircmsgs.privmsg(channel, ' '.join(something[idex:])))
-    say2 = wrap(say2, ['owner', many('something')])
+    say = wrap(say, ['owner', many('something')])
 
 
 
