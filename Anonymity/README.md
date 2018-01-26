@@ -1,2 +1,2 @@
-# Loggy
-Limnoria Plugin for logging PMs and Notices
+# Anonymity
+Owner-only say and act commands
