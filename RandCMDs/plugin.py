@@ -23,10 +23,10 @@ class RandCMDs(callbacks.Plugin):
     def cookie(self, irc, msg, args, something):
         """cookie"""
         nick = msg.nick
-        if something is not None:
-            nick = something
+        if something and len(something)>0:
+            nick = ' '.join(something[0:])
         irc.reply("gives " + nick + " a cookie", action=True)
-    cookie = wrap(cookie, [optional('something')])
+    cookie = wrap(cookie, [optional(many('something'))])
 Class = RandCMDs
 
 
