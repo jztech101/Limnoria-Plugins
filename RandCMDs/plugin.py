@@ -20,9 +20,13 @@ class RandCMDs(callbacks.Plugin):
     def pong(self, irc, msg, args):
         """pong"""
         irc.reply("ping")
-    def cookie(self, irc, msg, args):
+    def cookie(self, irc, msg, args, something):
         """cookie"""
-        irc.reply("gives " + msg.nick + " a cookie", action=True)
+        nick = msg.nick
+        if something is not None:
+            nick = something
+        irc.reply("gives " + nick + " a cookie", action=True)
+    cookie = wrap(cookie, [optional('something')])
 Class = RandCMDs
 
 
