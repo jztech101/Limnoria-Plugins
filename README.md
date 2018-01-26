@@ -1,2 +1,2 @@
-# Loggy
-Limnoria Plugin for logging PMs and Notices with extras
+# Limnoria-Plugins
+A Collection of Limnoria Plugins
