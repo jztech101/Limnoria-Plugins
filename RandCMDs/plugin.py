@@ -27,6 +27,14 @@ class RandCMDs(callbacks.Plugin):
             nick = ' '.join(something[0:])
         irc.reply("gives " + nick + " a cookie", action=True)
     cookie = wrap(cookie, [optional(many('something'))])
+    def potato(self, irc, msg, args):
+        """ potato """
+        irc.reply("is a potato", action=True)
+    def moo(self, irc, msg, args):
+        """ moo """
+        irc.reply("moOoOoOoOoOoOoOoOoOoOoOoO")
+
+
 Class = RandCMDs
 
 
