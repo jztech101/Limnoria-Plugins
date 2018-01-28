@@ -33,7 +33,9 @@ class RandCMDs(callbacks.Plugin):
     def moo(self, irc, msg, args):
         """ moo """
         irc.reply("moOoOoOoOoOoOoOoOoOoOoOoO")
-
+    def shrug(self, irc, msg, args):
+        """ shrug """
+        irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
 
 Class = RandCMDs
 
