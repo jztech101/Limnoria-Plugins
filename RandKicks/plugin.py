@@ -32,7 +32,7 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Spam')
         #spamregexes.append('test2')
         #spamkickmsg.append('Spam2')
-        funregexes.append('.*i.*love.*you.*Will.*you.*marry.*me.*')
+        funregexes.append('.*i.*l.*o.*v.*e.*W.*i.*l.*l.*y.*o.*u.*m.*e.*')
         funkickmsg.append("No")
         #funregexes.append('test3')
         #funkickmsg.append('Testing2')
