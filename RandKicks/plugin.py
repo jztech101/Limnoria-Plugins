@@ -28,7 +28,7 @@ class RandKicks(callbacks.Plugin):
     """RandKicks"""
     threaded = True
     def doPrivmsg(self,irc,msg):
-        if isChan(msg.args[0], True):
+        if not isChan(msg.args[0], True):
             return
         SpamDet = self.registryValue('spamDet',msg.args[0])
         FunDet = self.registryValue('funDet',msg.args[0])
