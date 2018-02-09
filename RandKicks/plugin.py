@@ -14,13 +14,21 @@ except ImportError:
     # Placeholder that allows to run the plugin on a bot
     # without the i18n module
     _ = lambda x: x
-
+def isChan(chan, checkprefix):
+    if not chan:
+        return False
+    elif chan.startswith("#"):
+        return True
+    elif checkprefix and len(chan) >= 2 and not chan[0].isalnum() and chan[1] == "#":
+        return True
+    else:
+        return False
 
 class RandKicks(callbacks.Plugin):
     """RandKicks"""
     threaded = True
     def doPrivmsg(self,irc,msg):
-        if msg.args[0].isalnum():
+        if isChan(msg.args[0], True):
             return
         SpamDet = self.registryValue('spamDet',msg.args[0])
         FunDet = self.registryValue('funDet',msg.args[0])
@@ -46,7 +54,7 @@ class RandKicks(callbacks.Plugin):
                 i = re.sub(r'\W+','',i)
                 if i in irc.state.channels[msg.args[0]].users:
                     nicks = nicks + 1
-                if nicks >= 3:
+                if nicks >= 4:
                     irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,"Mass Highlight Spam"))
                     return
 

@@ -12,22 +12,30 @@ except ImportError:
     # Placeholder that allows to run the plugin on a bot
     # without the i18n module
     _ = lambda x: x
-
+def isChan(chan, checkprefix):
+    if not chan:
+        return False
+    elif chan.startswith("#"):
+        return True
+    elif checkprefix and len(chan) >= 2 and not chan[0].isalnum() and chan[1] == "#":
+        return True
+    else:
+        return False
 
 class Loggy(callbacks.Plugin):
     """Loggy"""
     threaded = True
     def doNotice(self, irc, msg):
         logChannel = self.registryValue('logChan')
-        if not logChannel or not logChannel.startswith("#"):
+        if not logChannel or not isChan(logChannel, True):
             return
-        if not msg.args[0].isalnum():
+        if not isChan(msg.args[0], True):
             irc.queueMsg(ircmsgs.privmsg(logChannel, "[Notice] " + msg.prefix + ': (' +msg.args[0]+ ') '  +' '.join(msg.args[1:])))
         else:
             irc.queueMsg(ircmsgs.privmsg(logChannel, "[Notice] " + msg.prefix + ': '  +' '.join(msg.args[1:])))
     def doPrivmsg(self,irc,msg):
         logChannel = self.registryValue('logChan')
-        if not logChannel or not msg.args[0].isalnum() or not logChannel.startswith("#"):
+        if not logChannel or not isChan(msg.args[0], True) or not isChan(logChannel, True):
             return
         irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
 

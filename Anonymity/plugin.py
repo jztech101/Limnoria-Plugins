@@ -12,7 +12,15 @@ except ImportError:
     # Placeholder that allows to run the plugin on a bot
     # without the i18n module
     _ = lambda x: x
-
+def isChan(chan, checkprefix):
+    if not chan:
+        return False
+    elif chan.startswith("#"):
+        return True
+    elif checkprefix and len(chan) >= 2 and not chan[0].isalnum() and chan[1] == "#":
+        return True
+    else:
+        return False
 
 class Anonymity(callbacks.Plugin):
     """Anonymity"""
@@ -24,7 +32,7 @@ class Anonymity(callbacks.Plugin):
         else:
             channel = msg.nick
         idex = 0
-        if len(something) > 1 and something[0].startswith('#'):
+        if len(something) > 1 and isChan(something[0], False):
             channel = something[0]
             idex = 1
         irc.queueMsg(ircmsgs.action(channel, ' '.join(something[idex:])))
@@ -38,7 +46,7 @@ class Anonymity(callbacks.Plugin):
         else:
             channel = msg.nick
         idex=0
-        if len(something) > 1 and (something[0].startswith('#') or (not something[0][0].isalnum() and something[0][1] == "#")):
+        if len(something) > 1 and isChan(something[0], True):
             channel = something[0]
             idex = 1
         irc.queueMsg(ircmsgs.privmsg(channel, ' '.join(something[idex:])))
