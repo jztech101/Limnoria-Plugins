@@ -40,18 +40,18 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Spam Script')
         #spamregexes.append('test2')
         #spamkickmsg.append('Spam2')
-        funregexes.append('.*i.*l.*o.*v.*e.*W.*i.*l.*l.*y.*o.*u.*m.*e.*')
-        funkickmsg.append("No")
+        funregexes.append('something')
+        funkickmsg.append("something else")
         #funregexes.append('test3')
         #funkickmsg.append('Testing2')
+        msg2 = ircutils.stripFormatting(' '.join(msg.args[1:]))
         nicks = 0
         if SpamDet:
             for i in range(0, len(spamregexes)):
-                if re.match(spamregexes[i],' '.join(msg.args[1:]), re.IGNORECASE):
+                if re.match(spamregexes[i],msg2, re.IGNORECASE):
                     irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,spamkickmsg[i]))
                     return
-            for i in str(msg.args[1:]).split(" "):
-                i = re.sub(r'\W+','',i)
+            for i in str(msg2.split(" "):
                 if i in irc.state.channels[msg.args[0]].users:
                     nicks = nicks + 1
                 if nicks >= 4:
@@ -60,7 +60,7 @@ class RandKicks(callbacks.Plugin):
 
         if FunDet:
             for i in range(0, len(funregexes)):
-                if re.match(funregexes[i],' '.join(msg.args[1:]), re.IGNORECASE):
+                if re.match(funregexes[i],msg2, re.IGNORECASE):
                     irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,funkickmsg[i]))
                     return
 Class = RandKicks
