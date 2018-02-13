@@ -3,6 +3,7 @@ import supybot.utils as utils
 import re
 
 from supybot.commands import *
+import sys
 import supybot.plugins as plugins
 import supybot.ircmsgs as ircmsgs
 import supybot.ircutils as ircutils
@@ -45,13 +46,15 @@ class RandKicks(callbacks.Plugin):
         #funregexes.append('test3')
         #funkickmsg.append('Testing2')
         msg2 = ircutils.stripFormatting(' '.join(msg.args[1:]))
+        #print(msg2)
         nicks = 0
         if SpamDet:
             for i in range(0, len(spamregexes)):
                 if re.match(spamregexes[i],msg2, re.IGNORECASE):
                     irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,spamkickmsg[i]))
                     return
-            for i in str(msg2.split(" "):
+            for i in msg2.split(" "):
+                #print(i)
                 if i in irc.state.channels[msg.args[0]].users:
                     nicks = nicks + 1
                 if nicks >= 4:
