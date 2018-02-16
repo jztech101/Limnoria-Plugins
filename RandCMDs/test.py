@@ -3,7 +3,7 @@
 from supybot.test import *
 
 
-class LoggyTestCase(PluginTestCase):
+class RandCMDsTestCase(PluginTestCase):
     plugins = ('RandCMDs',)
 
 
