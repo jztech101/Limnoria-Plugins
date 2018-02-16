@@ -36,7 +36,15 @@ class RandCMDs(callbacks.Plugin):
     def shrug(self, irc, msg, args):
         """ shrug """
         irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
-
+    def test(self, irc, msg, args, something):
+        """ test """
+        self.moo = "moo"
+        irc.reply(self.moo)
+    test = wrap(test, ['owner', many('something')])
+    def test2(self,irc, msg, args, something):
+        """ test2 """
+        irc.reply(self.moo)
+    test2 = wrap(test2, ['owner', many('something')])
 Class = RandCMDs
 
 
