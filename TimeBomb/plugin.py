@@ -30,45 +30,57 @@ class TimeBomb(callbacks.Plugin):
     """TimeBomb"""
 
     def __init__(self, irc):
-        self.timebomb = False
+        self.__parent = super(TimeBomb, self)
+        self.__parent.__init__(irc)
+        self.bomb = False
         self.bombtarget = ""
         self.chan = ""
         self.rng = random.Random()
         self.rng.seed()
         self.goodWire = ""
         self.wires = ['Blue', 'Green', 'Red', 'Yellow', 'Pink', 'Purple', 'Orange', 'Black', 'Gray', 'White', 'Brown']
-    def timebomb(self, irc, msg, args):
+    def timebomb(self, irc, msg, args, something):
         """TimeBomb"""
-        if not isChan(msg.args[0], True) or not self.registryValue(self,msg.args[0],"TimeBomb"):
+        if not isChan(msg.args[0], True) or not self.registryValue("bombsEnabled",msg.args[0]):
             return
-        if msg.args[1] not in irc.state.channels[msg.args[0]].users:
-            self.bombtarget = self.sender
-        else:
-            self.bombtarget = msg.args[1]
-        self.timebomb = True
+        elif self.bomb:
+            irc.reply("A bomb is already running with seconds on the clock, please wait until it explodes (or gets defused)")
+            return
+        nick = msg.nick
+        if len(something) > 0 and something[0] in irc.state.channels[msg.args[0]].users:
+            nick = something[0]
+        self.bombtarget = nick
+        self.bomb = True
         self.goodWire = self.rng.choice(self.wires)
         logChannel = self.registryValue('logChan')
         self.chan = msg.args[0]
-        irc.queueMsg(ircmsgs.privmsg(logChannel, "[TimeBomb] " + msg.prefix + ': (' + self.chan + ') A bomb has been shoved down ' + self.bombtarget + '\'s pants, the good wire is the ' + self.goodWire + ' one')))
+        if logChannel:
+            irc.queueMsg(ircmsgs.privmsg(logChannel, "[TimeBomb] " + msg.prefix + ': (' + self.chan + ') A bomb has been shoved down ' + self.bombtarget + '\'s underwear, the good wire is the ' + self.goodWire + ' one'))
         irc.reply('A bomb has been shoved inside ' + self.bombtarget + '\'s underwear, it will detonate in 30 seconds. These are the wires: ' + ' '.join(self.wires))
-        schedule.addEvent(self, self.detonate(irc), time.time() + 30, 'detonate')
+        #schedule.removeEvent('detonate')
+        schedule.addEvent(self.detonate, time.time() + 30, 'detonate', [irc])
+    timebomb = wrap(timebomb, [optional(many('something'))])
     def cut(self, irc, msg, args, something):
         """cut"""
-        if not self.timebomb:
+        if not self.bomb:
             return
-        if self.sender == self.bombtarget:
-            if self.goodWire.toLower() == msg.args[1]:
-                self.timebomb = False
+        if msg.nick == self.bombtarget:
+            if len(something) > 0 and self.goodWire.lower() == something[0].lower():
+                self.bomb = False
                 irc.reply("The bomb has been defused!")
+                schedule.removeEvent('detonate')
             else:
                 self.detonate(irc)
         else:
-            self.bombtarget = self.sender
-            irc.reply("Uh-Oh. The bomb has suddenly moved itself into " + self.bombtarget + '\'s pants')
+            self.bombtarget = msg.nick
+            irc.reply("Uh-Oh. The bomb has suddenly moved itself into " + self.bombtarget + '\'s underwear')
+    cut = wrap(cut, [optional(many('something'))])
     def detonate(self, irc):
         """ detonate """
-        if self.timebomb:
+        if self.bomb:
             irc.queueMsg(ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!"))
+            self.bomb = False
+        schedule.removeEvent('detonate')
 Class = TimeBomb
 
 

@@ -25,7 +25,7 @@ TimeBomb = conf.registerPlugin('TimeBomb')
 # conf.registerGlobalValue(RandCMDs, 'someConfigVariableName',
 #     registry.Boolean(False, _("""Help for someConfigVariableName.""")))
 
-conf.registerChannelValue(TimeBomb, "timeBomb", registry.Boolean(False, ("""Bombs""")))
+conf.registerChannelValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs""")))
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
-conf.registerGlobalValue(TimeBomb, "timeBomb", registry.Boolean(False, ("""Bombs""")))
+conf.registerGlobalValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs""")))
 conf.registerGlobalValue(TimeBomb, "logChan", registry.String('', ("""The channel this will be logging to""")))
