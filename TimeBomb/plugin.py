@@ -47,7 +47,7 @@ class TimeBomb(callbacks.Plugin):
             irc.reply("A bomb is already running with seconds on the clock, please wait until it explodes (or gets defused)")
             return
         nick = msg.nick
-        if len(something) > 0 and something[0] in irc.state.channels[msg.args[0]].users:
+        if len(something) > 0 and something[0] in irc.state.channels[msg.args[0]].users and something[0] != irc.nick:
             nick = something[0]
         self.bombtarget = nick
         self.bomb = True
