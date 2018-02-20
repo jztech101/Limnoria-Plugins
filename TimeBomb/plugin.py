@@ -35,6 +35,7 @@ class TimeBomb(callbacks.Plugin):
         self.bomb = False
         self.bombtarget = ""
         self.chan = ""
+        self.sender = ""
         self.rng = random.Random()
         self.rng.seed()
         self.goodWire = ""
@@ -51,6 +52,7 @@ class TimeBomb(callbacks.Plugin):
             nick = something[0]
         self.bombtarget = nick
         self.bomb = True
+        self.sender = msg.nick
         self.goodWire = self.rng.choice(self.wires)
         logChannel = self.registryValue('logChan')
         self.chan = msg.args[0]
@@ -66,9 +68,9 @@ class TimeBomb(callbacks.Plugin):
             return
         if msg.nick == self.bombtarget:
             if len(something) > 0 and self.goodWire.lower() == something[0].lower():
-                self.bomb = False
-                irc.reply("The bomb has been defused!")
-                schedule.removeEvent('detonate')
+                self.bombtarget = self.sender
+                self.sender = msg.nick
+                irc.reply("The bomb has been defused and is sent back with seconds on the clock!")
             else:
                 self.detonate(irc)
         else:
