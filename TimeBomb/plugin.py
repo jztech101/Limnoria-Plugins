@@ -81,12 +81,10 @@ class TimeBomb(callbacks.Plugin):
         """ detonate """
         if self.bomb:
             if not irc.state.channels[self.chan].isOp(irc.nick):
-                irc.queueMsg(ircmsgs.privmsg(self.chan,"test1"))
                 irc.queueMsg(ircmsgs.privmsg("chanserv", "op " + self.chan))
-                irc.queueMsg(ircmsgs.privmsg(self.chan,"test2"))
-                time.sleep(5)
-            irc.queueMsg(ircmsgs.privmsg(self.chan, "moo3"))
-            irc.queueMsg(ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!"))
+                schedule.addEvent(irc.queueMsg, time.time(), "kickmg", [ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!")])
+            else:
+                irc.queueMsg(ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!"))
             self.bomb = False
         schedule.removeEvent('detonate')
 Class = TimeBomb
