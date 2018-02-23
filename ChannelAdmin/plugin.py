@@ -74,8 +74,8 @@ class ChannelAdmin(callbacks.Plugin):
         reason = "Your behavior is not conductive to the desired environment"
         if len(nick) > 1:
             reason = " ".join(nick[1:])
-        kickx(irc,channel,nick[0], reason, msg.nick)
         irc.queueMsg(ircmsgs.IrcMsg("MODE " + channel + " +b " + getHostmask(nick[0], irc)))
+        kickx(irc,channel,nick[0], reason, msg.nick)
     kban = wrap(kban, ['op', ('haveHalfop+', _('kickban')),'text'])
 
     def invite(self, irc, msg, args, channel, nick):
