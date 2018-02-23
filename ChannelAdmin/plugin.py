@@ -23,6 +23,8 @@ def isChan(chan, checkprefix):
         return False
 
 def kickx(irc, channel, nick, reason, sender):
+        if nick == irc.nick:
+             nick = sender
         irc.queueMsg(ircmsgs.kick(channel, nick, "[" + sender + "] " +reason))
 
 def getHostmask(nick, irc):
