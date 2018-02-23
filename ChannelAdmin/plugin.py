@@ -96,22 +96,22 @@ class ChannelAdmin(callbacks.Plugin):
     def op(self, irc, msg, args, channel, nick):
         """ op """
         irc.queueMsg(ircmsgs.mode(channel, "+o", nick))
-    mode = wrap(mode, ['op', ('haveHalfop+', _('op')), 'text'])
+    op = wrap(op, ['op', ('haveHalfop+', _('op')), 'text'])
 
     def deop(self, irc, msg, args, channel, nick):
         """ deop """
         irc.queueMsg(ircmsgs.mode(channel, "-o", nick))
-    mode = wrap(mode, ['op', ('haveHalfop+', _('deop')), 'text'])
+    deop = wrap(deop, ['op', ('haveHalfop+', _('deop')), 'text'])
 
     def voice(self, irc, msg, args, channel, nick):
         """ voice """
         irc.queueMsg(ircmsgs.mode(channel, "+v", nick))
-    mode = wrap(mode, ['op', ('haveHalfop+', _('voice')), 'text'])
+    voice = wrap(voice, ['op', ('haveHalfop+', _('voice')), 'text'])
 
     def devoice(self, irc, msg, args, channel, nick):
         """ devoice """
         irc.queueMsg(ircmsgs.mode(channel, "-v", nick))
-    mode = wrap(mode, ['op', ('haveHalfop+', _('devoice')), 'text'])
+    devoice = wrap(devoice, ['op', ('haveHalfop+', _('devoice')), 'text'])
 
 
 Class = ChannelAdmin
