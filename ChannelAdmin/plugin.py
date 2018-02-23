@@ -88,7 +88,7 @@ class ChannelAdmin(callbacks.Plugin):
     def topic(self, irc, msg, args, channel, nick):
         """ topic """
         irc.queueMsg(ircmsgs.topic(channel, nick))
-    topic = wrap(invite, ['op', ('haveHalfop+', _('topic')), 'text'])
+    topic = wrap(topic, ['op', ('haveHalfop+', _('topic')), 'text'])
 
     def mode(self, irc, msg, args, channel, nick):
         """ mode """
