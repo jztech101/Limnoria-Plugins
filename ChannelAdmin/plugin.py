@@ -27,7 +27,7 @@ def kickx(irc, channel, nick, reason, sender):
 
 def getHostmask(nick, irc):
     hostmask = nick
-    if "!" not in nick or "@" not in nick or ':' not in nick:
+    if "!" not in nick and "@" not in nick and ":" not in nick:
         hostmask = irc.state.nickToHostmask(nick)
         hostmask = "*!*@" + ircutils.hostFromHostmask(hostmask)
     return hostmask
