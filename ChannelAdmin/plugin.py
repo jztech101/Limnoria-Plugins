@@ -80,8 +80,10 @@ class ChannelAdmin(callbacks.Plugin):
 
     def invite(self, irc, msg, args, channel, nick):
         """ invite """
+        if not nick:
+            nick = msg.nick
         irc.queueMsg(ircmsgs.invite(channel, nick))
-    invite = wrap(invite, ['op', ('haveHalfop+', _('invite')),'text'])
+    invite = wrap(invite, ['op', ('haveHalfop+', _('invite')), optional('text')])
 
     def topic(self, irc, msg, args, channel, nick):
         """ topic """
@@ -95,23 +97,31 @@ class ChannelAdmin(callbacks.Plugin):
 
     def op(self, irc, msg, args, channel, nick):
         """ op """
+        if not nick:
+            nick = msg.nick
         irc.queueMsg(ircmsgs.mode(channel, "+o", nick))
-    op = wrap(op, ['op', ('haveHalfop+', _('op')), 'text'])
+    op = wrap(op, ['op', ('haveHalfop+', _('op')), optional('text')])
 
     def deop(self, irc, msg, args, channel, nick):
         """ deop """
+        if not nick:
+            nick = msg.nick
         irc.queueMsg(ircmsgs.mode(channel, "-o", nick))
-    deop = wrap(deop, ['op', ('haveHalfop+', _('deop')), 'text'])
+    deop = wrap(deop, ['op', ('haveHalfop+', _('deop')), optional('text')])
 
     def voice(self, irc, msg, args, channel, nick):
         """ voice """
+        if not nick:
+            nick = msg.nick
         irc.queueMsg(ircmsgs.mode(channel, "+v", nick))
-    voice = wrap(voice, ['op', ('haveHalfop+', _('voice')), 'text'])
+    voice = wrap(voice, ['op', ('haveHalfop+', _('voice')), optional('text')])
 
     def devoice(self, irc, msg, args, channel, nick):
         """ devoice """
+        if not nick:
+            nick = msg.nick
         irc.queueMsg(ircmsgs.mode(channel, "-v", nick))
-    devoice = wrap(devoice, ['op', ('haveHalfop+', _('devoice')), 'text'])
+    devoice = wrap(devoice, ['op', ('haveHalfop+', _('devoice')), optional('text')])
 
 
 Class = ChannelAdmin
