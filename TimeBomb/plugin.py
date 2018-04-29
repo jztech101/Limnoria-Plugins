@@ -55,7 +55,8 @@ class TimeBomb(callbacks.Plugin):
         if self.registryValue("bombsExempt",msg.args[0]):
             for x in self.registryValue("bombsExempt",msg.args[0]).split(","):
                if x == getHostname(nick, irc):
-                  return
+                  nick = msg.nick
+                  break
         self.bombtarget = nick
         self.bomb = True
         self.sender = msg.nick
