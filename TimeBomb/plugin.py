@@ -52,8 +52,8 @@ class TimeBomb(callbacks.Plugin):
         nick = msg.nick
         if len(something) > 0 and something[0] in irc.state.channels[msg.args[0]].users and something[0] != irc.nick:
             nick = something[0]
-        if self.registryValue("bombsExempt"):
-            for x in self.registryValue("bombsExempt").split(","):
+        if self.registryValue("bombsExempt",msg.args[0]):
+            for x in self.registryValue("bombsExempt",msg.args[0]).split(","):
                if x == getHostname(nick, irc):
                   return
         self.bombtarget = nick
