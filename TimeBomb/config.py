@@ -23,8 +23,9 @@ def configure(advanced):
 TimeBomb = conf.registerPlugin('TimeBomb')
 # This is where your configuration variables (if any) should go.  For example:
 # conf.registerGlobalValue(RandCMDs, 'someConfigVariableName',
-#     registry.Boolean(False, _("""Help for someConfigVariableName.""")))
-
+#     registry.Boolean(False, _("""Help for someConfigVariableName."""))
+conf.registerChannelValue(TimeBomb, "bombsExempt", registry.String('', ("""Exempted Hosts""")))
+conf.registerGlobalValue(TimeBomb, "bombsExempt", registry.String('', ("""Exempted Hosts""")))
 conf.registerChannelValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs""")))
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
 conf.registerGlobalValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs""")))

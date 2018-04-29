@@ -25,6 +25,8 @@ def isChan(chan, checkprefix):
         return True
     else:
         return False
+def getHostname(nick, irc):
+    return ircutils.hostFromHostmask(irc.state.nickToHostmask(nick))
 
 class TimeBomb(callbacks.Plugin):
     """TimeBomb"""
@@ -50,6 +52,10 @@ class TimeBomb(callbacks.Plugin):
         nick = msg.nick
         if len(something) > 0 and something[0] in irc.state.channels[msg.args[0]].users and something[0] != irc.nick:
             nick = something[0]
+        if self.registryValue("bombsExempt"):
+            for x in self.registryValue("bombsExempt").split(","):
+               if x == getHostname(nick, irc):
+                  return
         self.bombtarget = nick
         self.bomb = True
         self.sender = msg.nick
