@@ -38,7 +38,12 @@ class Loggy(callbacks.Plugin):
         if not logChannel or isChan(msg.args[0], True):
             return
         irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
-
+    def doInvite(self, irc, msg):
+        logChannel = self.registryValue('logChan')
+        if not logChannel:
+            return
+        irc.queueMsg(ircmsgs.privmsg(logChannel, "[Invite] " + msg.prefix + ": " + msg.args[1]))
+   
 
 Class = Loggy
 
