@@ -51,10 +51,10 @@ class Anonymity(callbacks.Plugin):
             idex = 1
         irc.queueMsg(ircmsgs.privmsg(channel, ' '.join(something[idex:])))
     say = wrap(say, ['owner', many('something')])
-    
+
     def raw(self, irc, msg, args, something):
         """ raw """
-         irc.queueMsg(ircmsgs.IrcMsg(' '.join(something)))
+        irc.queueMsg(ircmsgs.IrcMsg(' '.join(something)))
     raw = wrap(raw, ['owner', many('something')])
 
 
