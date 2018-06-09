@@ -4,7 +4,7 @@ import supybot.conf as conf
 import supybot.registry as registry
 try:
     from supybot.i18n import PluginInternationalization
-    _ = PluginInternationalization('Shrug')
+    _ = PluginInternationalization('SuperRandCMDs')
 except:
     # Placeholder that allows to run the plugin on a bot
     # without the i18n module
@@ -19,8 +19,8 @@ def configure(advanced):
     from supybot.questions import expect, anything, something, yn
     conf.registerPlugin('Shrug', True)
 
-Shrug = conf.registerPlugin('Shrug')
-conf.registerChannelValue(Shrug, "superShrug", registry.Boolean(False, ("""SuperShrug""")))
+SuperRandCMDs = conf.registerPlugin('SuperRandCMDs')
+conf.registerChannelValue(SuperRandCMDs, "super", registry.Boolean(False, ("""SuperS""")))
 
 # This is where your configuration variables (if any) should go.  For example:
 # conf.registerGlobalValue(RandCMDs, 'someConfigVariableName',
