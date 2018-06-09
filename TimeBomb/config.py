@@ -28,5 +28,8 @@ conf.registerChannelValue(TimeBomb, "bombsExempt", registry.String('', ("""Exemp
 conf.registerGlobalValue(TimeBomb, "bombsExempt", registry.String('', ("""Exempted Hosts, Separated by ,""")))
 conf.registerChannelValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs""")))
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
-conf.registerGlobalValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs""")))
-conf.registerGlobalValue(TimeBomb, "logChan", registry.String('', ("""The channel this will be logging to""")))
+conf.registerGlobalValue(TimeBomb, "bombsEnabled", registry.Boolean(False, ("""Bombs"""))) 
+conf.registerGlobalValue(TimeBomb, "logChan", registry.String('', ("""The channel this will be logging to"""))) 
+conf.registerChannelValue(TimeBomb, "bombDefenseEnabled", registry.Boolean(False, ("""Bombs Defense""")))
+# vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
+conf.registerGlobalValue(TimeBomb, "bombDefenseEnabled", registry.Boolean(False, ("""Bombs Defense""")))

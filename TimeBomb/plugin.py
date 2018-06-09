@@ -67,7 +67,7 @@ class TimeBomb(callbacks.Plugin):
             irc.queueMsg(ircmsgs.privmsg(logChannel, "[TimeBomb] " + msg.prefix + ': (' + self.chan + ') A bomb has been shoved down ' + self.bombtarget + '\'s underwear, the good wire is the ' + self.goodWire + ' one'))
         irc.reply('A bomb has been shoved inside ' + self.bombtarget + '\'s underwear, it will detonate in 60 seconds. These are the wires: ' + ' '.join(self.wires))
         #schedule.removeEvent('detonate')
-        schedule.addEvent(self.detonate, time.time() + 60, 'detonate', [irc])
+        schedule.addEvent(self.detonate, time.time() + 59, 'detonate', [irc, msg])
     timebomb = wrap(timebomb, [optional(many('something'))])
     def cut(self, irc, msg, args, something):
         """cut"""
@@ -79,19 +79,17 @@ class TimeBomb(callbacks.Plugin):
                 self.sender = msg.nick
                 irc.reply("The bomb has been defused and is sent back with seconds on the clock!")
             else:
-                self.detonate(irc)
+                self.detonate(irc, msg)
         else:
             self.bombtarget = msg.nick
             irc.reply("Uh-Oh. The bomb has suddenly moved itself into " + self.bombtarget + '\'s underwear')
     cut = wrap(cut, [optional(many('something'))])
-    def detonate(self, irc):
+    def detonate(self, irc, msg):
         """ detonate """
         if self.bomb:
-            if not irc.state.channels[self.chan].isOp(irc.nick):
-                irc.queueMsg(ircmsgs.privmsg("chanserv", "op " + self.chan))
-                schedule.addEvent(irc.queueMsg, time.time(), "kickmg", [ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!")])
-            else:
-                irc.queueMsg(ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!"))
+            if not irc.state.channels[self.chan].isOp(irc.nick) and self.registryValue("bombDefenseEnabled", msg.args[0]):
+                irc.sendMsg(ircmsgs.privmsg("chanserv", "op " + self.chan))
+            schedule.addEvent(irc.queueMsg, time.time() + 1, 'detonating', [ircmsgs.kick(self.chan, self.bombtarget, "KA-BOOOOOOOOOOOOOOOOM!")])
             self.bomb = False
         schedule.removeEvent('detonate')
 Class = TimeBomb
