@@ -21,9 +21,9 @@ class Shrug(callbacks.Plugin):
         """ shrug """
         irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
         if self.registryValue("superShrug",msg.args[0]):
-            irc.sendMsg(ircmsgs.privmsg(msg.args[0],' $shrug'))
-            irc.sendMsg(ircmsgs.privmsg(msg.args[0],' -shrug'))
-            irc.sendMsg(ircmsgs.privmsg(msg.args[0],' +shrug'))
+            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$shrug'))
+            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-shrug'))
+            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+shrug'))
 Class = Shrug
 
 
