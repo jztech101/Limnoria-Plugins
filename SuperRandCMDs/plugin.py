@@ -35,7 +35,7 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$ping'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+ping'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-ping'))
-            schedule.addEvent(irc.reply, time.time() + 1, 'delay ping', ['ping'])
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay pong', ['pong'])
         else:
             irc.reply('pong')
 
@@ -56,7 +56,7 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$pong'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+pong'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-pong'))
-            schedule.addEvent(irc.reply, time.time() + 1, 'delay pong', ['ping'])
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay ping', ['ping'])
         else:
             irc.reply('ping')
 
