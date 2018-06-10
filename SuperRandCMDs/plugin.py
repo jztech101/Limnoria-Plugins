@@ -5,6 +5,8 @@ import supybot.plugins as plugins
 import supybot.ircmsgs as ircmsgs
 import supybot.ircutils as ircutils
 import supybot.callbacks as callbacks
+import supybot.schedule as schedule
+import time
 try:
     from supybot.i18n import PluginInternationalization
     _ = PluginInternationalization('SuperRandCMDs')
@@ -65,7 +67,7 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$potato'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+potato'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-potato'))
-            schedule.addEvent(irc.reply, time.time() + 1, 'delay potato', ['is a potato', action=True])
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay potato', ["is a potato"], {"action":True})
         else:
             irc.reply("is a potato", action=True)
 
