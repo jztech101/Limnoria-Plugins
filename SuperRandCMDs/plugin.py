@@ -19,12 +19,11 @@ class SuperRandCMDs(callbacks.Plugin):
     threaded = False
     def shrug(self, irc, msg, args):
         """ shrug """
-        irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
         if self.registryValue("super",msg.args[0]):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$shrug'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+shrug'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-shrug'))
-
+        irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
     def ping(self, irc, msg, args):
         """ ping """
         if self.registryValue("super",msg.args[0]):
