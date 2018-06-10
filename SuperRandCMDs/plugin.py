@@ -23,14 +23,19 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$shrug'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+shrug'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-shrug'))
-        irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay shrug', ['┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻'])
+        else:
+            irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
+
     def ping(self, irc, msg, args):
         """ ping """
         if self.registryValue("super",msg.args[0]):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$ping'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+ping'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-ping'))
-        irc.reply('pong')
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay ping', ['ping'])
+        else:
+            irc.reply('pong')
 
 
     def moo(self, irc, msg, args):
@@ -39,7 +44,9 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$moo'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+moo'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-moo'))
-        irc.reply('Mooo0ooooOOOOOoooooo')
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay moo', ['moo'])
+        else:
+            irc.reply('Mooo0ooooOOOOOoooooo')
 
     def pong(self, irc, msg, args):
         """ pong """
@@ -47,7 +54,9 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$pong'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+pong'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-pong'))
-        irc.reply('ping')
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay pong', ['ping'])
+        else:
+            irc.reply('ping')
 
 
     def potato(self, irc, msg, args):
@@ -56,7 +65,9 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$potato'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+potato'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-potato'))
-        irc.reply("is a potato", action=True)
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay potato', ['is a potato', action=True])
+        else:
+            irc.reply("is a potato", action=True)
 
 Class = SuperRandCMDs
 
