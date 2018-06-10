@@ -31,7 +31,10 @@ def getHostmask(nick, irc):
     hostmask = nick
     if "!" not in nick and "@" not in nick and ":" not in nick:
         hostmask = irc.state.nickToHostmask(nick)
-        hostmask = "*!*@" + ircutils.hostFromHostmask(hostmask)
+        if ircutils.identFromHostmask(nick).startsWith("~"):
+            hostmask = "*!*@" + ircutils.hostFromHostmask(hostmask)
+        else:
+            hostmask = "*!" + ircutils.identFromHostmask(hostmask) + "@" + ircutils.hostFromHostmask(hostmask)
     return hostmask
 
 class ChannelAdmin(callbacks.Plugin):
