@@ -27,37 +27,37 @@ class SuperRandCMDs(callbacks.Plugin):
 
     def ping(self, irc, msg, args):
         """ ping """
-        irc.reply('pong')
         if self.registryValue("super",msg.args[0]):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$ping'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+ping'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-ping'))
+        irc.reply('pong')
 
 
     def moo(self, irc, msg, args):
         """ moo """
-        irc.reply('Mooo0ooooOOOOOoooooo')
         if self.registryValue("super",msg.args[0]):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$moo'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+moo'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-moo'))
+        irc.reply('Mooo0ooooOOOOOoooooo')
 
     def pong(self, irc, msg, args):
         """ pong """
-        irc.reply('pong')
         if self.registryValue("super",msg.args[0]):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$pong'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+pong'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-pong'))
+        irc.reply('ping')
 
 
     def potato(self, irc, msg, args):
         """ potato """
-        irc.reply("is a potato", action=True)
         if self.registryValue("super",msg.args[0]):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$potato'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+potato'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-potato'))
+        irc.reply("is a potato", action=True)
 
 Class = SuperRandCMDs
 
