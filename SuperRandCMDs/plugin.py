@@ -48,7 +48,7 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$moo'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+moo'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-moo'))
-            schedule.addEvent(irc.reply, time.time() + 1, 'delay moo', ['moo'])
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay moo', ['MoooooooOooooOooooooOoooo'])
         else:
             irc.reply('Mooo0ooooOOOOOoooooo')
 
