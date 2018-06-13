@@ -25,6 +25,8 @@ class SuperRandCMDs(callbacks.Plugin):
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$shrug'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+shrug'))
             irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-shrug'))
+            if 'OCBot' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'@@shrug'))
             schedule.addEvent(irc.reply, time.time() + 1, 'delay shrug', ['┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻'])
         else:
             irc.reply('┻━┻ ︵ ¯\_(ツ)_/¯ ︵ ┻━┻')
