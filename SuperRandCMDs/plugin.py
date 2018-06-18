@@ -73,6 +73,18 @@ class SuperRandCMDs(callbacks.Plugin):
         else:
             irc.reply("is a potato", action=True)
 
+
+    def burn(self, irc, msg, args):
+        """ burn """
+        if self.registryValue("super",msg.args[0]):
+            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$burn'))
+            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+burn'))
+            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-burn'))
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay burn', ["watches the world burn"], {"action":True})
+        else:
+            irc.reply("watches the world burn", action=True)
+
+
 Class = SuperRandCMDs
 
 
