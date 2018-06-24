@@ -43,6 +43,24 @@ class Loggy(callbacks.Plugin):
         if not logChannel:
             return
         irc.queueMsg(ircmsgs.privmsg(logChannel, "[Invite] " + msg.prefix + ": " + msg.args[1]))
+    def doPart(self, irc, msg):
+        logChannel = self.registryValue('logChan')
+        if not logChannel:
+            return
+        if msg.nick == self.nick:
+            if len(msg.args) > 3:
+                irc.queueMsg(ircmsgs.privmsg(logChannel, "[Part] " + msg.prefix + ': (' +msg.args[0]+ ') '  + msg.args[3:]))
+            else:
+                irc.queueMsg(ircmsgs.privmsg(logChannel, "[Part] " + msg.prefix + ': (' +msg.args[0]+ ') ')
+    def doKick(self, irc, msg):
+        logChannel = self.registryValue('logChan')
+        if not logChannel:
+            return
+        if msg.nick == self.nick:
+            if len(msg.args) > 3:
+                irc.queueMsg(ircmsgs.privmsg(logChannel, "[Kick] " + msg.prefix + ': (' +msg.args[1]+ ') ' + msg.args[3:]))
+            else:
+                irc.queueMsg(ircmsgs.privmsg(logChannel, "[Kick] " + msg.prefix + ': (' +msg.args[1]+ ')')
    
 
 Class = Loggy
