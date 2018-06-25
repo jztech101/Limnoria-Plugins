@@ -1,5 +1,6 @@
 
 import supybot.utils as utils
+import re
 from supybot.commands import *
 import supybot.plugins as plugins
 import supybot.ircmsgs as ircmsgs
@@ -61,7 +62,13 @@ class Loggy(callbacks.Plugin):
                 irc.queueMsg(ircmsgs.privmsg(logChannel, "[Kick] " + msg.prefix + ': (' +msg.args[0]+ ') ' + ' '.join(msg.args[2:])))
             else:
                 irc.queueMsg(ircmsgs.privmsg(logChannel, "[Kick] " + msg.prefix + ': (' +msg.args[0]+ ')'))
-   
+    def doPrivmsg(self,irc,msg):
+        logChannel = self.registryValue('logChan')
+        if not logChannel or not isChan(msg.args[0], True):
+            return
+        currnick = re.compile(".*" +irc.nick + ".*",re.IGNORECASE)
+        if currnick.match(' '.join(msg.args[1:])):
+            irc.queueMsg(ircmsgs.privmsg(logChannel, "[Ping] " + msg.prefix + ': (' +msg.args[0]+') ' + ' '.join(msg.args[1:])))
 
 Class = Loggy
 
