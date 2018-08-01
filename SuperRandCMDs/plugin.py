@@ -22,9 +22,12 @@ class SuperRandCMDs(callbacks.Plugin):
     def shrug(self, irc, msg, args):
         """ shrug """
         if self.registryValue("super",msg.args[0]):
-            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$shrug'))
-            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+shrug'))
-            irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-shrug'))
+            if 'Celena' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$shrug'))
+            if 'Cassi' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+shrug'))
+            if 'Cindie' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-shrug'))
             if 'OCBot' in irc.state.channels[msg.args[0]].users:
                 irc.sendMsg(ircmsgs.privmsg(msg.args[0],'@@shrug'))
             if 'Botergos' in irc.state.channels[msg.args[0]].users:
