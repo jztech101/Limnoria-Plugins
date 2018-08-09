@@ -39,8 +39,8 @@ class RandKicks(callbacks.Plugin):
         funkickmsg = []
         spamregexes.append('.*▄.*▄.*')
         spamkickmsg.append('Spam Script')
-        #spamregexes.append('test2')
-        #spamkickmsg.append('Spam2')
+        spamregexes.append('Christel just posted this')
+        spamkickmsg.append('Spam')
         funregexes.append('something')
         funkickmsg.append("something else")
         #funregexes.append('test3')
