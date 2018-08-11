@@ -41,6 +41,8 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Spam Script')
         spamregexes.append('Christel just posted this')
         spamkickmsg.append('Spam')
+        spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
+        spamkickmsg.append('Spam')
         funregexes.append('something')
         funkickmsg.append("something else")
         #funregexes.append('test3')
