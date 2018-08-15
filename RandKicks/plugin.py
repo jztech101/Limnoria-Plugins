@@ -43,20 +43,20 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Spam propoganda')
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
         spamkickmsg.append('Spam propoganda')
-        spamregexes.append('   ')
+        spamregexes.append(' .* ­.* .*')
         spamkickmsg.append('Spam Spaces')
-        spamregexes.append('  ­ ­ ­ ­ ­  ')
+        spamregexes.append('   .*')
         spamkickmsg.append('Spam Spaces')
         funregexes.append('something')
         funkickmsg.append("something else")
         #funregexes.append('test3')
         #funkickmsg.append('Testing2')
         msg2 = ircutils.stripFormatting(' '.join(msg.args[1:]))
-        #print(msg2)
+        print(msg2)
         nicks = 0
         if SpamDet:
             for i in range(0, len(spamregexes)):
-                if re.match(spamregexes[i],msg2, re.IGNORECASE):
+                if re.search(spamregexes[i],msg2, re.IGNORECASE):
                     irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,spamkickmsg[i]))
                     return
             for i in msg2.split(" "):
