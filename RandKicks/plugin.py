@@ -47,6 +47,8 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Blank Space Spam')
         spamregexes.append('   .*')
         spamkickmsg.append('Blank Space Spam')
+        spamregexes.append('ADn2IJnTRyM')
+        spamkickmsg.append('Link Spam')
         funregexes.append('something')
         funkickmsg.append("something else")
         #funregexes.append('test3')
