@@ -59,6 +59,8 @@ class SuperRandCMDs(callbacks.Plugin):
                 irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+moo'))
             if 'Cindie' in irc.state.channels[msg.args[0]].users:
                 irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-moo'))
+            if 'Botergos' in irc.state.channels[msg.args[0]].users or 'jacob1' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'!moo'))
             schedule.addEvent(irc.reply, time.time() + 1, 'delay moo', ['MoooooooOooooOooooooOoooo'])
         else:
             irc.reply('Mooo0ooooOOOOOoooooo')
