@@ -33,6 +33,10 @@ class RandKicks(callbacks.Plugin):
             return
         SpamDet = self.registryValue('spamDet',msg.args[0])
         FunDet = self.registryValue('funDet',msg.args[0])
+        useRemove = self.registryValue('useRemove',msg.args[0])
+        kickstr = "KICK"
+        if useRemove:
+            kickstr="REMOVE"
         spamregexes = []
         spamkickmsg = []
         funregexes = []
@@ -59,20 +63,23 @@ class RandKicks(callbacks.Plugin):
         if SpamDet:
             for i in range(0, len(spamregexes)):
                 if re.search(spamregexes[i],msg2, re.IGNORECASE):
-                    irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,spamkickmsg[i]))
+                    irc.queueMsg(ircmsgs.IrcMsg(prefix='', command=kickstr,
+                      args=(msg.args[0], msg.nick, spamkickmsg[i]), msg=None))
                     return
             for i in msg2.split(" "):
                 #print(i)
                 if i in irc.state.channels[msg.args[0]].users:
                     nicks = nicks + 1
                 if nicks >= 4:
-                    irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,"Mass Highlight Spam"))
+                    irc.queueMsg(ircmsgs.IrcMsg(prefix='', command=kickstr,
+                      args=(msg.args[0], msg.nick, "Mass Highlight Spam"), msg=None))
                     return
 
         if FunDet:
             for i in range(0, len(funregexes)):
                 if re.match(funregexes[i],msg2, re.IGNORECASE):
-                    irc.queueMsg(ircmsgs.kick(msg.args[0],msg.nick,funkickmsg[i]))
+                    irc.queueMsg(ircmsgs.IrcMsg(prefix='', command=kickstr,
+                      args=(msg.args[0], msg.nick, funkickmsg[i]), msg=None))
                     return
 Class = RandKicks
 

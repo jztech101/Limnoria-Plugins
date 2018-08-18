@@ -27,6 +27,8 @@ RandKicks = conf.registerPlugin('RandKicks')
 
 conf.registerChannelValue(RandKicks, "spamDet", registry.Boolean(False, ("""Spam Detection Kicks""")))
 conf.registerChannelValue(RandKicks, "funDet", registry.Boolean(False, ("""Fun Kicks""")))
+conf.registerChannelValue(RandKicks, "useRemove", registry.Boolean(False, ("""Remove""")))
 # vim:set shiftwidth=4 tabstop=4 expandtab textwidth=79:
 conf.registerGlobalValue(RandKicks, "spamDet", registry.Boolean(False, ("""Spam Detection Kicks""")))
 conf.registerGlobalValue(RandKicks, "funDet", registry.Boolean(False, ("""Fun Kicks""")))
+conf.registerGlobalValue(RandKicks, "useRemove", registry.Boolean(False, ("""Remove""")))
