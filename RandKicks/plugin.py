@@ -53,7 +53,7 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Link Spam')
         spamregexes.append('ADn2IJnTRyM')
         spamkickmsg.append('Link Spam')
-        spamregexes.append('         __')
+        spamregexes.append('  +[^A-Za-z1-9]')
         spamkickmsg.append('Graffiti Spam')
         funregexes.append('something')
         funkickmsg.append("something else")
