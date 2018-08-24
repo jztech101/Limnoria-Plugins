@@ -59,11 +59,11 @@ class Loggy(callbacks.Plugin):
                 irc.queueMsg(ircmsgs.privmsg(logChannel, "[Kick] " + msg.prefix + ': (' +msg.args[0]+ ')'))
     def doPrivmsg(self,irc,msg):
         logChannel = self.registryValue('logChan')
-        if not logChannel:
+        if logChannel:
             if isChan(msg.args[0], True):
                 currnick = re.compile(".*" +irc.nick + ".*",re.IGNORECASE)
                 if msg.args[0] != logChannel and currnick.match(' '.join(msg.args[1:])):
-                irc.queueMsg(ircmsgs.privmsg(logChannel, "[Ping] " + msg.prefix + ': (' +msg.args[0]+') ' + ' '.join(msg.args[1:])))
+                    irc.queueMsg(ircmsgs.privmsg(logChannel, "[Ping] " + msg.prefix + ': (' +msg.args[0]+') ' + ' '.join(msg.args[1:])))
             else:
                 irc.queueMsg(ircmsgs.privmsg(logChannel, "[PM] " + msg.prefix + ': ' + ' '.join(msg.args[1:])))
 
