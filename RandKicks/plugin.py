@@ -59,7 +59,7 @@ class RandKicks(callbacks.Plugin):
         funkickmsg.append("something else")
         spamregexes.append(' {4,}')
         spamkickmsg.append('Line Spam')
-        spamregexes.append('[A-Za-z1-9]{15,}')
+        spamregexes.append('[A-Za-z1-9]{20,}')
         spamkickmsg.append('Line Spam')
         #funregexes.append('test3')
         #funkickmsg.append('Testing2')
