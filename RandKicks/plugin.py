@@ -41,28 +41,35 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg = []
         funregexes = []
         funkickmsg = []
+
         spamregexes.append('.*▄.*▄.*')
         spamkickmsg.append('Spam Script')
+
         spamregexes.append('Christel just posted this')
         spamkickmsg.append('Propoganda Spam')
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
         spamkickmsg.append('Propoganda Spam')
+
         spamregexes.append('wqz')
         spamkickmsg.append('Link Spam')
         spamregexes.append('LRH')
         spamkickmsg.append('Link Spam')
         spamregexes.append('ADn2IJnTRyM')
         spamkickmsg.append('Link Spam')
+
         spamregexes.append('  +[^A-Za-z1-9 ]')
         spamkickmsg.append('Graffiti Spam')
+
         funregexes.append('something')
         funkickmsg.append("something else")
+
         spamregexes.append(' {4,}')
         spamkickmsg.append('Line Spam')
         spamregexes.append('[A-Za-z1-9]{20,}')
         spamkickmsg.append('Line Spam')
-        #funregexes.append('test3')
-        #funkickmsg.append('Testing2')
+        spamregexes.append('( [A-Za-z0-9]){4,}')
+        spamkickmsg.append('Line Spam')
+
         msg2 = ircutils.stripFormatting(' '.join(msg.args[1:]))
         print(msg2)
         nicks = 0
