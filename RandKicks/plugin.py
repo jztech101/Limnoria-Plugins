@@ -45,9 +45,13 @@ class RandKicks(callbacks.Plugin):
         spamregexes.append('.*▄.*▄.*')
         spamkickmsg.append('Spam Script')
 
-        spamregexes.append('Christel just posted this')
+        spamregexes.append('.*just posted this.*freenode blog')
         spamkickmsg.append('Propoganda Spam')
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
+        spamkickmsg.append('Propoganda Spam')
+        spamregexes.append('A.*blog.*freenode staff.*children')
+        spamkickmsg.append('Propoganda Spam')
+        spamregexes.append('Ꭺ.*blⲟg.*frеeᥒഠⅾе ѕtaff.*ⅽhiⅼdrᥱᥒ')
         spamkickmsg.append('Propoganda Spam')
 
         spamregexes.append('wqz')
@@ -65,7 +69,7 @@ class RandKicks(callbacks.Plugin):
 
         spamregexes.append(' {4,}')
         spamkickmsg.append('Line Spam')
-        spamregexes.append('[A-Za-z1-9]{20,}')
+        spamregexes.append('[A-Za-z1-9]{25,}')
         spamkickmsg.append('Line Spam')
         spamregexes.append('( [A-Za-z0-9]){4,}')
         spamkickmsg.append('Line Spam')
