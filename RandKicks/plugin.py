@@ -49,9 +49,7 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Propoganda Spam')
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
         spamkickmsg.append('Propoganda Spam')
-        spamregexes.append('A.*blog.*freenode staff.*children')
-        spamkickmsg.append('Propoganda Spam')
-        spamregexes.append('Ꭺ.*blⲟg.*frеeᥒഠⅾе ѕtaff.*ⅽhiⅼdrᥱᥒ')
+        spamregexes.append('b[^ ]{2}g.+f[^ ]{7}.+[^ ]t[^ ]ff.+m[^ ]mb[^ ]r')
         spamkickmsg.append('Propoganda Spam')
 
         spamregexes.append('With our IRC Ad')
