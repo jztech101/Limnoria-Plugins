@@ -49,10 +49,10 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Propoganda Spam')
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
         spamkickmsg.append('Propoganda Spam')
-        spamregexes.append('b(ⅼ|l|l)(ഠ|ⲟ|o)(ɡ|g).+f(r|r)(ᥱ|е|e){2}(ᥒ|n)(ഠ|o)(ⅾ|d|ԁ)(ᥱ|е|e).+(ѕ|s)t(a|a)ff.+(ⅿ|m)(ᥱ|е|e)(ⅿ|m)b(ᥱ|е|e)r')
+        spamregexes.append('b(ⅼ|l|l)(ഠ|ο|ⲟ|o)(ɡ|g).+f(r|r)(ᥱ|е|e){2}(ᥒ|n)(ഠ|o)(ⅾ|d|ԁ)(ᥱ|е|e).+(ѕ|s)t(a|a)ff.+(ⅿ|m)(ᥱ|е|e)(ⅿ|m)b(ᥱ|е|e)r')
         spamkickmsg.append('Propoganda Spam')
 
-        spamregexes.append('(W|w)ith.+(ο|o)ur.+(I|I)(R|R)(C|C).+ad.+(ѕ|s)(ᥱ|е|e)r(ᴠ|v)(і|i)(с|c)(ᥱ|е|e)')
+        spamregexes.append('(W|W)it(h|һ).+(ο|o)(ᥙ|u)r.+(Ⅰ|I|I)(Ꭱ|R|R)(C|C|Ϲ).+ad.+(ѕ|s)(ᥱ|е|e)r(ᴠ|v)(і|i)(ⅽ|с|c)(ᥱ|е|e)')
         spamkickmsg.append('Ad Spam')
 
         spamregexes.append('wqz')
