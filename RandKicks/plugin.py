@@ -54,6 +54,12 @@ class RandKicks(callbacks.Plugin):
         spamregexes.append('Ꭺ.*blⲟg.*frеeᥒഠⅾе ѕtaff.*ⅽhiⅼdrᥱᥒ')
         spamkickmsg.append('Propoganda Spam')
 
+        spamregexes.append('With our IRC Ad')
+        spamkickmsg.append('Ad Spam')
+        spamregexes.append('Ꮃⅰtһ.*ο∪r.*IᎡⅭ.*ad.*')
+        spamkickmsg.append('Ad Spam')
+
+
         spamregexes.append('wqz')
         spamkickmsg.append('Link Spam')
         spamregexes.append('LRH')
