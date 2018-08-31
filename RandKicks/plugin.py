@@ -25,6 +25,32 @@ def isChan(chan, checkprefix):
     else:
         return False
 
+def replaceUnicode(string):
+    string = re.sub('[ᎳᏔ]','W',string)
+    string = re.sub('[οⲟഠо]','o',string)
+    string = re.sub('[һ]','h',string)
+    string = re.sub('[ỿу]','y',string)
+    string = re.sub('[ᥙ]','u',string)
+    string = re.sub('[ⅠⅼΙ]','I',string)
+    string = re.sub('[іⅰ]','i',string)
+    string = re.sub('[ᖇᏒᎡ]','R',string)
+    string = re.sub('[ϹС]','C',string)
+    string = re.sub('[ⅽсϲ]','c',string)
+    string = re.sub('[ѕ]','s',string)
+    string = re.sub('[ᥱе]','e',string)
+    string = re.sub('[ᎪΑ]','A',string)
+    string = re.sub('[аɑ]','a',string)
+    string = re.sub('[ⅿ]','m', string)
+    string = re.sub('[ⅾԁ]','d',string)
+    string = re.sub('[ᥒ]','n',string)
+    string = re.sub('[ɡ]','g',string)
+    string = re.sub('[рⲣ]','p', string)
+    string = re.sub('[ᴠⅴ]','v', string)
+    string = re.sub('[ϳ]','j',string)
+    string = re.sub('[∪]','U', string)
+    string = re.sub('[     ]',' ',string)
+    return string
+
 class RandKicks(callbacks.Plugin):
     """RandKicks"""
     threaded = True
@@ -49,9 +75,13 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Propoganda Spam')
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
         spamkickmsg.append('Propoganda Spam')
+        spamregexes.append('b(L|I)og (where|by) freenode staff member')
+        spamkickmsg.append('Propoganda Spam')
+        spamregexes.append('freenode pedophilia scanda(l|I)')
+        spamkickmsg.append('Propoganda Spam')
 
-        spamregexes.append('([A-Za-z0-9 ]*[ᎳоһỿᥙⅠᎡϹѕᴠіⅽсⅼഠⅰаɑοⲟруɡΙᖇᥒⅾԁⅿᥱеᎪ     ]+){4,}')
-        spamkickmsg.append('Special Character Spam')
+        spamregexes.append('with our irc ad service')
+        spamkickmsg.append('Ad Spam')
 
         spamregexes.append('wqz')
         spamkickmsg.append('Link Spam')
@@ -59,6 +89,9 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Link Spam')
         spamregexes.append('ADn2IJnTRyM')
         spamkickmsg.append('Link Spam')
+
+        spamregexes.append('A(I|L)+ah is doing')
+        spamkickmsg.append('Religious Spam')
 
         spamregexes.append('  +[^A-Za-z0-9 ]')
         spamkickmsg.append('Graffiti Spam')
@@ -74,6 +107,7 @@ class RandKicks(callbacks.Plugin):
         spamkickmsg.append('Line Spam')
 
         msg2 = ircutils.stripFormatting(' '.join(msg.args[1:]))
+        msg2 = replaceUnicode(msg2)
         print(msg2)
         nicks = 0
         if SpamDet:
