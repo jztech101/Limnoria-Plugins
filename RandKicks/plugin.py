@@ -50,7 +50,7 @@ class RandKicks(callbacks.Plugin):
         spamregexes.append('After the acquisition by Private Internet Access, Freenode is now being used')
         spamkickmsg.append('Propoganda Spam')
 
-        spamregexes.append('([A-Za-z0-9]*(һ|ᥙ|Ⅰ|Ꭱ|Ϲ|ѕ|ᴠ|і|ⅽ|с|ⅼ|ഠ|ο|ⲟ|ɡ|ᥒ|ⅾ|ԁ|ⅿ|ᥱ|е)+){4,}')
+        spamregexes.append('([A-Za-z0-9]*(һ|ỿ|ᥙ|Ⅰ|Ꭱ|Ϲ|ѕ|ᴠ|і|ⅽ|с|ⅼ|ഠ|ο|ⲟ|ɡ|ᥒ|ⅾ|ԁ|ⅿ|ᥱ|е)+){4,}')
         spamkickmsg.append('Special Character Spam')
 
         spamregexes.append('wqz')
