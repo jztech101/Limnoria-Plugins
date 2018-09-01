@@ -38,7 +38,7 @@ def replaceUnicode(string):
     string = re.sub('[ⅽсϲ]','c',string)
     string = re.sub('[ѕ]','s',string)
     string = re.sub('[ᥱе]','e',string)
-    string = re.sub('[ᎪΑ]','A',string)
+    string = re.sub('[АᎪΑ]','A',string)
     string = re.sub('[аɑ]','a',string)
     string = re.sub('[ⅿ]','m', string)
     string = re.sub('[ⅾԁ]','d',string)
@@ -48,7 +48,7 @@ def replaceUnicode(string):
     string = re.sub('[ᴠⅴ]','v', string)
     string = re.sub('[ϳ]','j',string)
     string = re.sub('[∪]','U', string)
-    string = re.sub('[          ]',' ',string)
+    string = re.sub('[           ]',' ',string)
     return string
 
 class RandKicks(callbacks.Plugin):
@@ -90,11 +90,11 @@ class RandKicks(callbacks.Plugin):
         spamregexes.append('ADn2IJnTRyM')
         spamkickmsg.append('Link Spam')
 
-        spamregexes.append('A(I|L)+ah is doing')
+        spamregexes.append('A[il]+ah [li]s do[li]ng')
         spamkickmsg.append('Religious Spam')
-        spamregexes.append('(moon|sun) is not doing')
+        spamregexes.append('(moon|sun) [li]s not do[li]ng')
         spamkickmsg.append('Religious Spam')
-        spamregexes.append('stars are not doing')
+        spamregexes.append('(stars|p[li]anets|ga[li]ax[li]es|oceans) are not doing')
         spamkickmsg.append('Religious Spam')
 
 
