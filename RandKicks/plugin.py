@@ -48,7 +48,7 @@ def replaceUnicode(string):
     string = re.sub('[ᴠⅴ]','v', string)
     string = re.sub('[ϳ]','j',string)
     string = re.sub('[∪]','U', string)
-    string = re.sub('[     ]',' ',string)
+    string = re.sub('[        ]',' ',string)
     return string
 
 class RandKicks(callbacks.Plugin):
