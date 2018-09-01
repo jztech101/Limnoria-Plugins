@@ -48,7 +48,7 @@ def replaceUnicode(string):
     string = re.sub('[ᴠⅴ]','v', string)
     string = re.sub('[ϳ]','j',string)
     string = re.sub('[∪]','U', string)
-    string = re.sub('[        ]',' ',string)
+    string = re.sub('[          ]',' ',string)
     return string
 
 class RandKicks(callbacks.Plugin):
@@ -92,6 +92,11 @@ class RandKicks(callbacks.Plugin):
 
         spamregexes.append('A(I|L)+ah is doing')
         spamkickmsg.append('Religious Spam')
+        spamregexes.append('(moon|sun) is not doing')
+        spamkickmsg.append('Religious Spam')
+        spamregexes.append('stars are not doing')
+        spamkickmsg.append('Religious Spam')
+
 
         spamregexes.append('  +[^A-Za-z0-9 ]')
         spamkickmsg.append('Graffiti Spam')
