@@ -33,6 +33,8 @@ class RandKicks(callbacks.Plugin):
             return
         FunDet = self.registryValue('funDet',msg.args[0])
         kickstr = "KICK"
+        funregexes = []
+        funkickmsg = []
         funregexes.append('something')
         funkickmsg.append("something else")
 
