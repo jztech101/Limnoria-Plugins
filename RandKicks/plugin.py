@@ -40,7 +40,7 @@ class RandKicks(callbacks.Plugin):
 
         if FunDet:
             for i in range(0, len(funregexes)):
-                if re.match(funregexes[i],msg2, re.IGNORECASE):
+                if re.match(funregexes[i],' '.join(msg.args[1:]), re.IGNORECASE):
                     irc.queueMsg(ircmsgs.IrcMsg(prefix='', command=kickstr,
                       args=(msg.args[0], msg.nick, funkickmsg[i]), msg=None))
                     return
