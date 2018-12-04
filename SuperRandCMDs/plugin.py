@@ -106,8 +106,20 @@ class SuperRandCMDs(callbacks.Plugin):
         else:
             irc.reply("watches the world burn", action=True)
 
-
+    def source(self, irc, msg, args):
+        """ source """
+        if self.registryValue("super",msg.args[0]):
+            if 'Celena' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'$source'))
+            if 'Cassi' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'+source'))
+            if 'Cindie' in irc.state.channels[msg.args[0]].users:
+                irc.sendMsg(ircmsgs.privmsg(msg.args[0],'-source'))
+            schedule.addEvent(irc.reply, time.time() + 1, 'delay source', ["Limnoria: https://github.com/progval/Limnoria with JZTech101's Limnoria Plugins: https://github.com/jztech101/Limnoria-Plugins and Various Other Plugins"])
+        else:
+            irc.reply("Limnoria: https://github.com/progval/Limnoria with JZTech101's Limnoria Plugins: https://github.com/jztech101/Limnoria-Plugins and Various Other Plugins")
 Class = SuperRandCMDs
 
 
 # vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=79:
+

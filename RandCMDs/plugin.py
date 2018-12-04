@@ -33,10 +33,6 @@ class RandCMDs(callbacks.Plugin):
         """ test2 """
         irc.reply(self.moo)
     test2 = wrap(test2, ['owner', many('something')])
-    def source(self, irc, msg, args):
-        """ source """
-        irc.reply("Limnoria: https://github.com/progval/Limnoria with JZTech101's Limnoria Plugins: https://github.com/jztech101/Limnoria-Plugins and Various Other Plugins")
-
 Class = RandCMDs
 
 
