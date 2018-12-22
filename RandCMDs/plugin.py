@@ -3,6 +3,7 @@ import supybot.utils as utils
 from supybot.commands import *
 import supybot.plugins as plugins
 import supybot.ircmsgs as ircmsgs
+import sys
 import supybot.ircutils as ircutils
 import supybot.callbacks as callbacks
 try:
@@ -35,8 +36,10 @@ class RandCMDs(callbacks.Plugin):
     test2 = wrap(test2, ['owner', many('something')])
     def source(self, irc, msg, args):
         """ source """
-        irc.reply("Limnoria: https://github.com/progval/Limnoria with JZTech101's Limnoria Plugins: https://github.com/jztech101/Limnoria-Plugins and Various Other Plugins")
-
+        irc.reply("Limnoria: https://github.com/progval/Limnoria with JZTech101's Limnoria-Plugins: https://github.com/jztech101/Limnoria-Plugins and various other plugins")
+    def version(self, irc, msg, args):
+        """ version """
+        irc.reply("Limnoria with JZTech101's Limnoria-Plugins and various other plugins on Python " + sys.version.replace("\n",""))
 Class = RandCMDs
 
 
